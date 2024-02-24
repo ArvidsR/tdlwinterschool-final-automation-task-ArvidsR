@@ -3,6 +3,7 @@ import { browser } from '@wdio/globals';
 
 class ProductPage extends Page {
     get productName() { return $('h1[itemprop="name"]'); }
+    get initialProductColor() { return $('.selected .color_pick'); }
     get productColor() { return $('li:not(.selected) a.color_pick'); }
     get addToCartButton() { return $('button.exclusive'); }
 }

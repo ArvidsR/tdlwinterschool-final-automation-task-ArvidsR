@@ -1,6 +1,6 @@
 Feature: Test-case1
 
-    @wip2
+    @wip
     Scenario: Unregistered user in checkout requires account creation or signing in
         Given I am on the home page
         When I click on the WOMEN

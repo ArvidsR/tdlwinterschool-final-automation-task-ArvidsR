@@ -5,6 +5,7 @@ import addToCartPage from '../page-objects/addToCart.page.js';
 import cartPage from '../page-objects/cart.page.js';
 import checkoutPage from '../page-objects/checkout.page.js';
 import { addedProductCount } from '../utils/utils.js';
+import headerPage from '../page-objects/header.page.js';
 
 When('I click on a product', async function() {
     const productNameElement = await productsPage.firstProductName;
@@ -49,4 +50,13 @@ Then('The number of items on the cart increases by 1', async function() {
     await browser.pause(2000);
     const newItemCount = await addedProductCount();
     await expect(newItemCount).toBe(this.initialItemCount + 1);
+});
+
+When('I click the Bin to remove the product', async function() {
+    await cartPage.productRemove.click();
+});
+
+Then('The cart displays that it is empty', async function() {
+    await expect(headerPage.cartText2).toHaveText("(empty)")
+    await expect(cartPage.cartText3).toHaveText("Your shopping cart is empty.")
 });

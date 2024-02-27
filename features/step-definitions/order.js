@@ -13,6 +13,7 @@ When('I click on a product', async function() {
 });
 
 When('I change the color', async function() {
+    await browser.pause(1000);
     await productPage.productColor.click();
     await expect(productPage.initialProductColor.toString()).not.toBe(productPage.productColor.toString());
 });

@@ -15,8 +15,11 @@ When('I click on a product', async function() {
 });
 
 When('I change the color', async function() {
+    // REVIEW: pause is a bad sign
     await browser.pause(1000);
     await productPage.productColor.click();
+    // REVIEW: initialProductColor is a misleading name. It's not the "initial", it's currently "selected"
+    // Same with "productColor". Should have called something like "not selected color"
     await expect(productPage.initialProductColor.toString()).not.toBe(productPage.productColor.toString());
 });
 
@@ -47,6 +50,8 @@ When('I click the Add to cart button', async function() {
 });
 
 Then('The number of items on the cart increases by 1', async function() {
+    // REVIEW: pause is a bad sign
+    // Should have used waitUntil for validation
     await browser.pause(2000);
     const newItemCount = await addedProductCount();
     await expect(newItemCount).toBe(this.initialItemCount + 1);

@@ -11,6 +11,7 @@ When('I click the Search button', async function() {
 });
 
 Then('The correct information is displayed in the products page with the corresponding {string}', async function(text) {
+    // REVIEW: pause is a bad sign, need to wait mindufully
     await browser.pause(1000);
     const itemArray = await $$(productsPage.productsNames);
     await itemArray.forEach(async (itemName) => {
